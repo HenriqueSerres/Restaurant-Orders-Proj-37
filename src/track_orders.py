@@ -56,3 +56,11 @@ class TrackOrders:
         )
         busiest = all_days.most_common()[-1][0]
         return busiest
+
+    def get_how_many_times(self, customer, order):
+        customer_orders = set(order for order, _ in self._data[customer])
+        quantity = 0
+        for food in customer_orders:
+            if food == order:
+                quantity += 1
+        return quantity

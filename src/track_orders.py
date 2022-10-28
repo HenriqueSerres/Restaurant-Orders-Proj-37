@@ -47,7 +47,7 @@ class TrackOrders:
         all_days = Counter(
             day[1] for client in self._data.values() for day in client
         )
-        busiest = all_days.most_common(1)[0][0]
+        busiest = all_days.most_common()[0][0]
         return busiest
 
     def get_least_busy_day(self):

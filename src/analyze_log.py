@@ -3,15 +3,15 @@ import csv
 
 
 def analyze_log(path_to_file):
-    trackOrders = TrackOrders
+    trackOrders = TrackOrders()
     if not path_to_file.endswith(".csv"):
         raise FileNotFoundError(f"Extensão inválida: '{path_to_file}'")
     try:
-        with open(path_to_file, encoding="utf8") as file:
+        with open(path_to_file, mode="r", encoding="utf8") as file:
             content = csv.reader(file, delimiter=",", quotechar='"')
-            print("XXXX", content)
-        for customer, order, day in content:
-            trackOrders.add_new_order(customer, order, day)
+            for client in content:                
+                trackOrders.add_new_order(client[0], client[1], client[2])
+
         most_ordered = trackOrders.get_most_ordered_dish_per_customer("maria")
         frequency = trackOrders.get_how_many_times("arnaldo", "hamburguer")
         never_ordered = trackOrders.get_never_ordered_per_customer("joao")

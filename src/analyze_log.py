@@ -9,7 +9,7 @@ def analyze_log(path_to_file):
     try:
         with open(path_to_file, mode="r", encoding="utf8") as file:
             content = csv.reader(file, delimiter=",", quotechar='"')
-            for client in content:                
+            for client in content:
                 trackOrders.add_new_order(client[0], client[1], client[2])
 
         most_ordered = trackOrders.get_most_ordered_dish_per_customer("maria")
